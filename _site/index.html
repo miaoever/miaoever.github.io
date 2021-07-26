@@ -52,6 +52,28 @@
 
     <article class="post">
         <header class="post-header">
+            <h2 class="post-title"><a href="/implement-of-a-hash-blockingqueue">实现支持消息合并机制的并发阻塞队列</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>最近我维护的一个系统（下文简称 A）需要实现一个消息队列，大致的场景是：B系统监控某任务的状态，当状态有变化时通过调用 A 的 RESTful 接口请求将最新的状态推送至 A，A 接受到消息后将其插入到自己的消息队列中，然后再从队列中取出消息并再广播给第三方的系统。针对该场景，该消息队列需要支持以下两个主要特性：</p>
+ <a class="read-more" href="/implement-of-a-hash-blockingqueue">&raquo;</a>
+        </section>
+        <footer class="post-meta">
+            
+                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
+                mjdeng
+            
+            
+            <time class="post-date" datetime="2015-12-09">
+                09 Dec 2015
+            </time> 
+        </footer>
+    </article>
+
+    
+
+    <article class="post">
+        <header class="post-header">
             <h2 class="post-title"><a href="/parser-combinator-library-in-javascript">sheva.js</a></h2>
         </header>
         <section class="post-excerpt">
@@ -88,6 +110,28 @@
             
             <time class="post-date" datetime="2014-12-03">
                 03 Dec 2014
+            </time> 
+        </footer>
+    </article>
+
+    
+
+    <article class="post">
+        <header class="post-header">
+            <h2 class="post-title"><a href="/rework-notes">Rework 读书笔记</a></h2>
+        </header>
+        <section class="post-excerpt">
+            <p>这两天读了 37signals 久负盛名的 Rework 一书，根据自己一些思考做了些摘录和笔记。</p>
+ <a class="read-more" href="/rework-notes">&raquo;</a>
+        </section>
+        <footer class="post-meta">
+            
+                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
+                mjdeng
+            
+            
+            <time class="post-date" datetime="2014-11-14">
+                14 Nov 2014
             </time> 
         </footer>
     </article>

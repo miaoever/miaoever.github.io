@@ -1,4 +1,4 @@
-I"-<p>Etherpty 这个项目其实4月份和 Hayeah 讨论过后就实现了最初的原型版本，只是当时代码比较混乱，后来忙着实习等等琐事，导致整个项目被闲置了下来。最近，正好有点时间，所以对所有代码进行了重构，以提高可维护性和可扩展性。</p>
+I"C<p>Etherpty 这个项目其实4月份和 Hayeah 讨论过后就实现了最初的原型版本，只是当时代码比较混乱，后来忙着实习等等琐事，导致整个项目被闲置了下来。最近，正好有点时间，所以对所有代码进行了重构，以提高可维护性和可扩展性。</p>
 
 <p>简单的来说，etherpty 是一个通过 url 非常便捷的直播、分享你的 pty 的工具。作为分享者，你只需要运行 etherpty share 命令便能获取一个带有 token 的 url，将这个 url 分享给任何想观看你直播的听众，听众在任何现代的浏览器上访问该 url 就能实时地看到你 pty 直播的内容。</p>
 
@@ -43,7 +43,7 @@
 <h4 id="contributors">Contributors</h4>
 <p>Thanks <a href="https://github.com/hayeah">Hayeah</a> for the idea and the protocol design.</p>
 
-<p>License
-MIT</p>
+<h4 id="license">License</h4>
+<p>MIT</p>
 
 :ET
