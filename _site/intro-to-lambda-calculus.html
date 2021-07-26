@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>随笔杂记 - 借我瞻前与顾后，借我执拗如少年</title>
+    <meta name="description" content="rumbling thoughts" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css " />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="/">Home</a>
+        <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">λ-演算与编码</h1>
+            <section class="post-meta">
+                
+                <time class="post-date" datetime="2013-07-26">26 Jul 2013</time>
+            </section>
+        </header>
+
+<!--         <header class="post-header">
+            <a id="blog-logo" href="feed.xml">
+                
+                    <span class="blog-title">随笔杂记</span>
+                
+            </a>
+        </header> -->
+
+        <!-- <span class="post-meta">
+            <time datetime="2013-07-26">26 Jul 2013</time>
+            
+        </span> -->
+
+        <!-- <h1 class="post-title">λ-演算与编码</h1> -->
+
+        <section class="post-content">
+            <h4 id="历史">历史</h4>
+<p>λ-演算(λ-calculus)最早由阿隆索.邱奇(Alonzo Church)提出,被看作是一套用于研究函数定义、函数应用和递归的形式系统，用来证明可确定性问题。说到邱奇，他正是大名鼎鼎的阿兰.图灵(Alan Turning)的博士生导师。而邱奇的λ-演算与图灵的图灵机被证明具有等价的计算能力。 John McCarthy 在1960年以λ-演算为基础开发了 Lisp 语言，进而使得λ-演算成为函数式编程乃至计算机程序语言的理论基础。 本文不会给出诸如 β-归约 或是 α-变换 等一些概念的形式化定义，而是会将其思想融入到具体编码(encoding)或者运算的过程中。 基本元素</p>
+
+<p>λ-演算主要由以下几个元素组成：</p>
+
+<ul>
+  <li>变量, 例如, v, foo</li>
+  <li>匿名函数, 例如, λx, 表示一个参数为 x 的匿名函数.</li>
+  <li>函数的应用(application), 例如 λx.x+1, 表示一个参数为 x 的匿名函数,其函数体为 x+1.</li>
+  <li>如果我们写成 BNF 的形式，一条λ-演算表达式可以写作：</li>
+</ul>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="o">&lt;</span><span class="n">exp</span><span class="o">&gt;</span>  <span class="p">:</span><span class="o">=</span> <span class="o">&lt;</span><span class="n">var</span><span class="o">&gt;</span>
+        <span class="o">|</span>  <span class="p">(</span><span class="o">&lt;</span><span class="n">exp</span><span class="o">&gt;&lt;</span><span class="n">exp</span><span class="o">&gt;</span><span class="p">)</span>
+        <span class="o">|</span>  <span class="p">(</span><span class="n">λ</span><span class="o">&lt;</span><span class="n">var</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">exp</span><span class="o">&gt;</span><span class="p">)</span>   </code></pre></figure>
+
+<p>此外，在λ-演算中，一切皆是函数，无论是数字还是普通变量其实都是一个个的函数，正所谓函数即变量，变量即函数，因此我们很自然的能够将函数作为参数进行传递（如同我们在计算机程序语言中传递变量一样）。接下来我们会看到，通过以上几条简单的语法元素，是如何构成λ-演算强大的表达能力的。 数字编码</p>
+
+<p>一种常见的自然数的递归定义如下：</p>
+
+<ul>
+  <li>零</li>
+  <li>某一个自然数的后继</li>
+</ul>
+
+<p>所以，我们只要能形式化的表述『零』以及『后继』这两个概念，就能对所有自然数进行定义。对『零』和『后继』的编码方式有很多，这里我们介绍一种称为邱奇数(church numberal)的编码方式。 在邱奇数编码的定义中，将数看做是一个函数 ƒ 对变量 x 的作用，例如数字 0 表示函数 ƒ 对 x 进行了 0 次作用，数字 n 表示函数 ƒ 对变量 x 进行了 n 次作用。由此，写成λ-演算表达式的形式：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="mi">0</span> <span class="p">:</span><span class="o">=</span> <span class="n">λƒ</span><span class="p">.</span><span class="n">λx</span><span class="p">.</span><span class="n">x</span>  
+<span class="mi">1</span> <span class="p">:</span><span class="o">=</span> <span class="n">λƒ</span><span class="p">.</span><span class="n">λx</span><span class="p">.(</span><span class="n">f</span> <span class="n">x</span><span class="p">)</span>  
+<span class="mi">2</span> <span class="p">:</span><span class="o">=</span> <span class="n">λƒ</span><span class="p">.</span><span class="n">λx</span><span class="p">.</span><span class="n">f</span> <span class="p">(</span><span class="n">f</span> <span class="n">x</span><span class="p">)</span>  
+<span class="mi">3</span> <span class="p">:</span><span class="o">=</span> <span class="n">λƒ</span><span class="p">.</span><span class="n">λx</span><span class="p">.</span><span class="n">f</span> <span class="p">(</span><span class="n">f</span> <span class="p">(</span><span class="n">f</span> <span class="n">x</span><span class="p">))</span>  
+    <span class="p">...</span></code></pre></figure>
+
+<p>以 0 为例讲解一下λ-演算的作用过程，由于λ-演算约定一个匿名函数只能有一个参数，而由上文邱奇数对数的约定可以看出，要表达一个自然数，我们需要两个参数：函数 ƒ 以及变量 x 。由上面的式子可以看出，我们在外层定义了一个匿名函数其参数为 ƒ (即 λƒ)，与此同时该匿名函数的返回值又是另一个匿名函数（λx），这个内层的匿名函数的参数为 x，返回值为 x 本身。由此我们实现了接收 ƒ 和 x 两个参数的目的；而这种过程有一个专门的名字进行描述，称为 柯里化(currying)。 还记得我们在文章开头所说：『函数即变量，变量即函数』么，这里我们把函数 ƒ 作为匿名函数参数进行传递，在函数式语言中，这称为高阶函数(high order function)。 总结起来，任意自然数 n 是一个有两个参数的匿名函数(参数分别为 ƒ 和 x)。为了便于更直观的理解上述函数，我们可以用可读性更高的程序语言来表示相同的过程：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">zero</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>  
+  <span class="k">return</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">one</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>  
+  <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">two</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">):</span>  
+  <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="p">...</span></code></pre></figure>
+
+<p>我们再来看看如何对『后继』进行编码。在自然数中，任意自然数 n 的后继即为 n+1。回到邱奇数的定义，一个数代表函数 ƒ 对变量 x 的作用，对任意数字 n ，表示函数 ƒ 对变量 x 进行了 n 次作用，那么，自然数 n+1 表达了什么呢？一方面我们很容易想到 n+1 是 ƒ 对 x 的 n+1 次作用，另一方面，n+1 也表示对数字 n 再进行一次 ƒ 的作用(apply)，换句话说，就是将函数 ƒ 作用于 n 。 有了上面的的描述，我们很容易将『后继』表示如下：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">successor</span> <span class="p">:</span><span class="o">=</span> <span class="n">λn</span><span class="p">.</span><span class="n">λf</span><span class="p">.</span><span class="n">λx</span><span class="p">.</span><span class="n">f</span> <span class="p">(</span><span class="n">n</span> <span class="n">f</span> <span class="n">x</span><span class="p">)</span></code></pre></figure>
+
+<p>可见，『后继』是一个有三个参数的匿名函数(参数分别为n, f, x)，它的返回值为 ƒ 对数 n 的一次作用，即为 n 的后继（想一想，在『后继』的表达式中，是如何表达数字 n 的）。 由此，我们完成了对整个自然数的定义，在这之上，我们就能进一步定义更多的操作，比如对于加法，我们输入任意两个自然数 m 和 n，希望得到 m+n:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="n">add</span> <span class="p">:</span><span class="o">=</span> <span class="n">λn</span><span class="p">.</span><span class="n">λm</span><span class="p">.</span><span class="n">m</span> <span class="n">successor</span> <span class="n">n</span></code></pre></figure>
+
+<h4 id="布尔值编码">布尔值编码</h4>
+<p>对于布尔值的变量，只有在条件判断语句中(如 if)，才能体现出其值(true or false)的意义，所以我们先来定义 if 表达式。if 表达式通常有如下的形式：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">if</span> <span class="n">condition</span><span class="p">:</span>  
+  <span class="n">true</span><span class="o">-</span><span class="n">exp</span>
+<span class="k">else</span><span class="p">:</span>  
+  <span class="n">false</span><span class="o">-</span><span class="n">exp</span></code></pre></figure>
+
+<p>可以看出，if 表达式有三个输入参数：condition, true-exp, false-exp, 通过对条件变量 condition 进行判断，分别选择 true-exp 或是 false-exp 作为返回值。 根据上面的定义，我们可以由此得出 if 表达式对应的形式化定义： if := λv.λt.λf.v t f</p>
+
+<p>用自然语言来解释，就是 if 作为一个函数，输入三个参数：v, t, f, 其返回值为函数 v 作用于 t f 之上的结果（即t 和 f 作为 v 的两个参数输入到 v 中）。 很容易我们就能将 t 对应于之前提到的 true-exp，f 对应于 false-exp，v 则对应 condition 。显然，v 应该是一个布尔值函数，即 true 函数 或 false 函数，我们将 t 和 f 作为 v 的两个参数输入，如果 v 为 true 函数，其将第一个参数（即 t）作为返回值，若 v 为 false 函数，则输出第二个参数（即 f）。由此我们得到 true 和 false 的定义：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">true</span> <span class="p">:</span><span class="o">=</span> <span class="n">λx</span><span class="p">.</span><span class="n">λy</span><span class="p">.</span><span class="n">x</span>  
+<span class="n">false</span> <span class="p">:</span><span class="o">=</span> <span class="n">λx</span><span class="p">.</span><span class="n">λy</span><span class="p">.</span><span class="n">y</span>  </code></pre></figure>
+
+<p>以上就是λ-演算中对于 true 和 false 的定义。此外，细心的读者可能会发现 false 的定义和 0 的定义实质上是相同的，所以在程序语言中 0 和 false 都代表『假』值是一种合理的设计。 此外，我们还可以进一步定义一些常见的逻辑函数：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="ow">and</span> <span class="p">:</span><span class="o">=</span> <span class="n">λx</span><span class="p">.</span><span class="n">λy</span><span class="p">.</span><span class="n">x</span> <span class="n">y</span> <span class="n">false</span>  
+<span class="ow">or</span>  <span class="p">:</span><span class="o">=</span> <span class="n">λx</span><span class="p">.</span><span class="n">λy</span><span class="p">.</span><span class="n">x</span> <span class="n">true</span> <span class="n">y</span>  
+<span class="ow">not</span> <span class="p">:</span><span class="o">=</span> <span class="n">λx</span><span class="p">.</span><span class="n">x</span> <span class="n">false</span> <span class="n">true</span>  </code></pre></figure>
+
+<p>请读者自行思考、推导、验证上述表达式的正确性。</p>
+
+<h4 id="序对编码">序对编码</h4>
+
+<p>熟悉 Lisp 以及其方言（如 scheme ）的读者对序对(pair)应该不陌生，简单的说，我们称 M 和 N 的有序集合为一个序对，记为。对于序对，我们有三个操作：创建序对(mkpair),提取第一个元素(fst)，提取第二个元素(snd)。例如：</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">fst</span><span class="p">(</span><span class="n">mkpair</span> <span class="n">M</span> <span class="n">N</span><span class="p">)</span> <span class="o">=</span> <span class="n">M</span>  
+<span class="n">snd</span><span class="p">(</span><span class="n">mkpair</span> <span class="n">M</span> <span class="n">N</span><span class="p">)</span> <span class="o">=</span> <span class="n">N</span>  </code></pre></figure>
+
+<p>序对类型的本质，是由 mkpair 构造，并且能根据选择 fst 或是 snd 返回序对的首或尾元素。说到根据某个条件选择第一个元素或是第二个元素，这不正是我们上文所介绍的布尔值编码所对应的过程吗？如果把构造序对(mkpair)看做是构造一个 if 表达式，而选择第一个还是第二个元素作为 condition 用于判断，若 condition 为 fst（对应布尔值的 true），返回第一个元素，若为 snd (对应 false)，则返回第二个元素，我们就能将对序对的编码完全对应到对布尔值的编码之上，</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">mkpair</span> <span class="p">:</span><span class="o">=</span> <span class="n">λx</span><span class="p">.</span><span class="n">λy</span><span class="p">.</span><span class="n">λs</span><span class="p">.</span><span class="n">s</span> <span class="n">x</span> <span class="n">y</span>  
+<span class="n">fst</span> <span class="p">:</span><span class="o">=</span> <span class="n">λp</span><span class="p">.</span><span class="n">p</span> <span class="n">true</span>  
+<span class="n">snd</span> <span class="p">:</span><span class="o">=</span> <span class="n">λp</span><span class="p">.</span><span class="n">p</span> <span class="n">false</span>  </code></pre></figure>
+
+
+        </section>
+
+        
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            
+                <figure class="author-image">
+                    <a class="img" href="/" style="background-image: url(/assets/images/profile.png)">
+                    <span class="hidden">mjdeng's Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> mjdeng </h4>
+                    <!-- Author Bio -->
+                    <p>
+                        天蝎. Engineer@Facebook
+                    </p>
+                </section>
+            
+
+            <!-- Share links section -->
+            <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=λ-演算与编码&amp;url=https://miaoever.github.io/intro-to-lambda-calculus"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://miaoever.github.io/intro-to-lambda-calculus"
+        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=https://miaoever.github.io/intro-to-lambda-calculus"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+            <!-- Disqus comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="">随笔杂记</a> &copy; 
+              2021 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>

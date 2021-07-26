@@ -1,3 +1,19 @@
-theme: jekyll-theme-minimal
-title: [随笔杂记]
-description: [借我瞻前与顾后，借我执拗如少年]
+name: "随笔杂记"
+description: "借我瞻前与顾后，借我执拗如少年"
+meta_description: "rumbling thoughts"
+
+markdown: kramdown
+highlighter: rouge
+logo: false
+paginate: 15
+baseurl: ""
+domain_name: "https://miaoever.github.io"
+#google_analytics: "UA-XXXXXXXX-X"
+plugins: [jekyll-paginate]
+
+# Details for the RSS feed generator
+url: "feed.xml"
+author: "mjdeng"
+
+# Disqus config
+#disqus-shortname: "
