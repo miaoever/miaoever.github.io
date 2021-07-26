@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>随笔杂记 - 借我瞻前与顾后，借我执拗如少年</title>
+    <meta name="description" content="rumbling thoughts" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css " />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="/">Home</a>
+        <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">开源项目- Mat2Py</h1>
+            <section class="post-meta">
+                
+                <time class="post-date" datetime="2013-09-09">09 Sep 2013</time>
+            </section>
+        </header>
+
+<!--         <header class="post-header">
+            <a id="blog-logo" href="feed.xml">
+                
+                    <span class="blog-title">随笔杂记</span>
+                
+            </a>
+        </header> -->
+
+        <!-- <span class="post-meta">
+            <time datetime="2013-09-09">09 Sep 2013</time>
+            
+        </span> -->
+
+        <!-- <h1 class="post-title">开源项目- Mat2Py</h1> -->
+
+        <section class="post-content">
+            <p>Mat2py 这个小项目源于我自身的需求 - 将一些 Matlab 代码转换为能够不经修改就能运行的 Python 代码。所以 Mat2py 就是这样一个能够完成代码转换的编译器，目前能够完成基本的代码转换，并提供了一定的扩展性。</p>
+
+<p>作为暑假期间完成的业余小项目，前后开发大概用了20个晚上的时间。总的来说，开发难度不大，从词法分析到语法分析，到代码生成，用时间最多的是在语法分析部分(Parser),在语法分析的时候，由于没有 Matlab 语言的语法说明，所以只有自己根据经验设计语法规则，导致在写 Parser 的时候用到了大量的 ad-hoc 的办法，使得整个 parser 的代码逻辑变得较为混乱,这一方面大大增加了维护的难度和成本，另一方面，也削弱了开源的意义，因为生成的 AST 估计只有我才能够理解，所以其它开发者是很难参与到代码的贡献中来的（摊手）。另外，由于在 Python 中，矩阵并不是元类型，所有对矩阵的操作均是通过调用外部的库函数得以实现，最先开始我想做类型推导，以区分矩阵类型和普通类型，从而对不同类型采用不同的运算方式（比如矩阵乘和代数乘是不同的），但是仔细想想才发现目前这种基于静态分析而缺少运行时信息的状态基本上是没法做到这一点的，因此作罢，最后采用了一些办法进行简单的判断，这可能会导致一些潜在的问题。</p>
+
+<p>此外，我之前一直用 Vim 来编写 Python 代码，用着还算顺手，但是在调试代码的时候，我深刻的体会到了先进的 IDE 的价值。调试 Python 代码最简单的可以直接在代码运行时输出 log，然后进行分析。稍微进化一点可以使用 pdb(类似于 gdb)加入断点或者单步运行等等 Debug 功能，但是一旦函数调用层次较多，程序的逻辑较为复杂的时候，这种命令行下的调试工具便显得力不从心了。之前我在微博上说，先进的IDE （例如 VS/Xcode ）只是缺乏一个优秀的文本编辑器，而其他方面则完胜纯文本编辑器(Vim/Emacs)。具体来说，优秀的文本编辑器的优势在于，你可以用大量快捷键或者命令的组合来完成对文本的批量处理和编辑，这样无论是输入还是编辑，都可以用键盘来完成，这大大的提高了文本处理的效率。同时，优秀的文本编辑器是高度可定制化的，你可以根据自己的喜好来配置编辑器几乎所有的功能。这些都是优秀文本编辑器的优势之所在。但是作为 IDE 来讲，最为显著的优势就是它能够『理解』代码。为什么这样说呢？因为 IDE 通常是编辑器与编译器的综合体，由于自身就有编译代码的能力，所以在编辑代码的时候，IDE 能够从语意层面理解你所输入的每一行代码，它能根据上下文来完成自动补全、智能提示、代码高亮等等复杂的工作；而文本编辑器表面上也可以完成上述工作，但是它是基于文本而非语意的，也就是说，它只能通过正则表达式对文本进行匹配来勉强完成工作，由此可以看出，这是高度完全不同的两个层次，IDE 所做的工作大大降低了编写代码和排除 bug 的难度。另外，可视化的调试工具、对整个项目的管理等优势，就不再多说了。总而言之，用正确的工具去做正确的事，才是最明智的选择。</p>
+
+<p>另一方面，回过头来思考这种高级语言到高级语言的转换，其意义是值得商榷的。因为高级语言的精髓在于其语意本身，而语意又决定了代码风格，充分利用语言所提供的语意特性，才能够写出优雅而高效的代码。比如 Matlab 语言本身是完全基于矩阵的，所以尽可能的用矩阵运算代替循环操作就能够使得代码更加简洁，运行的效率也会有非常大的提升。而 Python 有自身的语言特性，比如迭代器和生成器，正确的使用这些特性，才能尽可能的发挥所用语言的优势。所以，不同语言的特性及风格存在着巨大的区别，机械地进行代码转换，只能保证的是逻辑上的对应关系，但却大大丧失了目标语言本身的优势。</p>
+
+<p>回到 Mat2py 这个项目来说，现在已经完成了基本逻辑的转换（选择、循环、函数调用、矩阵生成等等），以及一些常用库函数，由于库函数已经插件化，所以对于库函数的后期扩展变得相对容易。此外，下一步我可能会搭一个 Live Demo，使得用户可以在浏览器中直接得到代码转换的结果，从而简化了使用的难度。</p>
+
+<p>项目的详细介绍和源代码都在：<a href="https://github.com/miaoever/Mat2py">https://github.com/miaoever/Mat2py</a></p>
+
+        </section>
+
+        
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            
+                <figure class="author-image">
+                    <a class="img" href="/" style="background-image: url(/assets/images/profile.png)">
+                    <span class="hidden">mjdeng's Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> mjdeng </h4>
+                    <!-- Author Bio -->
+                    <p>
+                        天蝎. Engineer@Facebook
+                    </p>
+                </section>
+            
+
+            <!-- Share links section -->
+            <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=开源项目- Mat2Py&amp;url=https://miaoever.github.io/mat2py"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://miaoever.github.io/mat2py"
+        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=https://miaoever.github.io/mat2py"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+            <!-- Disqus comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="">随笔杂记</a> &copy; 
+              2021 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>

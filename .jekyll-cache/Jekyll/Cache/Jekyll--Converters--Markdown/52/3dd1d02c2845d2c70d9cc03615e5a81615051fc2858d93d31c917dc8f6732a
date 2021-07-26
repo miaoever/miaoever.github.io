@@ -1,0 +1,2 @@
+I" <p>sheva.js 是业余时间实现的一个简单的 Parser Combinator Liabrary（解析器组合子）。其能够通过若干简单的解析器(parser)，进而组合实现功能更加强大的解析器。具体可以参看 sheva.js README 中所描述的一个计算器的例子。</p>
+:ET

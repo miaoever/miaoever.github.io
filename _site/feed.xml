@@ -5,9 +5,231 @@
     <description>借我瞻前与顾后，借我执拗如少年</description>
     <link>feed.xml/</link>
     <atom:link href="feed.xml/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 25 Jul 2021 23:49:28 -0700</pubDate>
-    <lastBuildDate>Sun, 25 Jul 2021 23:49:28 -0700</lastBuildDate>
+    <pubDate>Mon, 26 Jul 2021 00:13:22 -0700</pubDate>
+    <lastBuildDate>Mon, 26 Jul 2021 00:13:22 -0700</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>sheva.js</title>
+        <description>&lt;p&gt;sheva.js 是业余时间实现的一个简单的 Parser Combinator Liabrary（解析器组合子）。其能够通过若干简单的解析器(parser)，进而组合实现功能更加强大的解析器。具体可以参看 sheva.js README 中所描述的一个计算器的例子。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;组合子(combinator)是函数式编程里面的重要思想。如果说OO是归纳法（分析归纳需求，然后根据需求分解问题，解决问题），那么 “面向组合子”就是“演绎法”。通过定义最基本的原子操作，定义基本的组合规则，然后把这些原子以各种方法组合起来。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;面向组合子(co)编程的难度在于，需要将待问题正交分解为若干子模块（组合子），然后通过这些正交组合子的任意组合完成对问题的完整建模。co 通常充分利用了函数式语言中函数作为 first-class citizen 的地位，将逻辑、功能均抽象为函数，并通过其的组合实现所需的功能。&lt;/p&gt;
+
+&lt;p&gt;解析器组合子(parser combinator)可以说是最常见的组合子应用。区别于传统的通过自动机(automation)来实现解析器的方式，解析器组合子通过若干简单的解析器不断组合成功能更加复杂的解析器。从形式上来说，解析器组合子的输入是若干解析函数(parse function)，输出是一个功能更复杂的解析函数。&lt;/p&gt;
+
+&lt;p&gt;组合子通常使用支持函数式编程特别是支持将函数作为第一类类型的语言来实现（因为在实现上，一个组合子就可以看作是一个函数），其支持将函数作为参数进行传递、作为返回值进行返回，大大简化了实现的难度。而对于主流的支持面向对象的语言来说，实现组合子也几乎没有任何障碍。对于函数式语言与面向对象语言来说，闭包(closure)和对象是两个占据核心位置的概念，&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;objects are merely a poor man’s closures&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;对于闭包来说，在描述上通常称为“函数以及其所关联的一个局部作用域”，而我更倾向于描述成“带有状态的函数”，这样的措词能够强调闭包是一个函数，其次是区别于一般函数，闭包带有通过作用域所保存的状态。而对于面向对象语言中的对象(object)来说，功能通过成员函数来实现，状态则通过对象中的成员变量来保持。在这个视角下，类和闭包的区别仅仅在于闭包作为一个函数是 invokable 的，而对于对象来说则必须通过“对象名.成员函数()”的方式来进行调用。所以，通过诸如 C++/Java 这样的支持面向对象的语言来实现组合子几乎没有任何的障碍。&lt;/p&gt;
+
+&lt;p&gt;更进一步，在 C++11 标准中，Funtor(仿函数)已经成为标准库的一部分。在标准库中，std::function 是一个类，其对应的对象和其它所有对象一样具有成员函数、成员变量，可以作为函数参数以及返回值；所不同的是，其通过重载函数调用符号‘()’ 来实现了对象的 invokable, 使得 std::function 类型的对象在形式上能够如同函数一样被直接调用。在我的实际使用中，Funtor的引入使得整个语言具有更强大的表达能力。&lt;/p&gt;
+
+&lt;p&gt;面向组合子编程是一种非常强大的问题建模方式，更丰富的内容可以参考 ajoo 的经典系列文章&lt;论面向组合子程序设计方法&gt; 。&lt;/论面向组合子程序设计方法&gt;&lt;/p&gt;
+
+&lt;p&gt;Sheva.js&lt;/p&gt;
+
+&lt;p&gt;Github: &lt;a href=&quot;https://github.com/miaoever/sheva&quot;&gt;https://github.com/miaoever/sheva&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 09 May 2015 03:18:00 -0700</pubDate>
+        <link>feed.xml/parser-combinator-library-in-javascript</link>
+        <guid isPermaLink="true">feed.xml/parser-combinator-library-in-javascript</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>开源项目- Etherpty</title>
+        <description>&lt;p&gt;Etherpty 这个项目其实4月份和 Hayeah 讨论过后就实现了最初的原型版本，只是当时代码比较混乱，后来忙着实习等等琐事，导致整个项目被闲置了下来。最近，正好有点时间，所以对所有代码进行了重构，以提高可维护性和可扩展性。&lt;/p&gt;
+
+&lt;p&gt;简单的来说，etherpty 是一个通过 url 非常便捷的直播、分享你的 pty 的工具。作为分享者，你只需要运行 etherpty share 命令便能获取一个带有 token 的 url，将这个 url 分享给任何想观看你直播的听众，听众在任何现代的浏览器上访问该 url 就能实时地看到你 pty 直播的内容。&lt;/p&gt;
+
+&lt;p&gt;此外，如果你想请求远程的协作者来操作、控制你的 pty，只需要通过 etherpty share –editable以编辑模式来分享你的 pty，并将得到的 url 发送给远程协作者，他就可以通过浏览器上的模拟终端操作你本地的 pty 了。&lt;/p&gt;
+
+&lt;p&gt;项目分为两个部分&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/miaoever/etherpty-cli&quot;&gt;Client&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/miaoever/etherpty-clietherpty-server&quot;&gt;Server&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;下面就是官方的介绍了 :)&lt;/p&gt;
+
+&lt;h4 id=&quot;installation&quot;&gt;Installation&lt;/h4&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;npm &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;etherpty-cli &lt;span class=&quot;nt&quot;&gt;-g&lt;/span&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;usage&quot;&gt;Usage&lt;/h4&gt;
+&lt;p&gt;To broadcast(share) your pty,&lt;/p&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$etherpty&lt;/span&gt; share
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;If connected, you may get the information like&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Your shell is shared at: http://etherpty.io/b0f3003a47574a9dada220208e389a92  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, you can spread the unique url to anyone you want to share. The listeners just need to paste the url into their browser and everything from your pty will broadcast to them now.&lt;/p&gt;
+
+&lt;h4 id=&quot;editable-mode&quot;&gt;Editable mode&lt;/h4&gt;
+&lt;p&gt;In some situation, you may allow the listener to control your pty(i.e. your pty is editable), just share your pty in the editable way&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$etherpty&lt;/span&gt; share &lt;span class=&quot;nt&quot;&gt;--editable&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice: your shared pty is uneditable to the listeners in default.&lt;/p&gt;
+
+&lt;h4 id=&quot;configuration&quot;&gt;Configuration&lt;/h4&gt;
+&lt;p&gt;You can config your own etherpty server (instead of etherpty.io) in config/config.json, or specific by the command line argv like&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$etherpty&lt;/span&gt; share http://yourserverip:port
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;contributors&quot;&gt;Contributors&lt;/h4&gt;
+&lt;p&gt;Thanks &lt;a href=&quot;https://github.com/hayeah&quot;&gt;Hayeah&lt;/a&gt; for the idea and the protocol design.&lt;/p&gt;
+
+&lt;p&gt;License
+MIT&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 03 Dec 2014 02:18:00 -0800</pubDate>
+        <link>feed.xml/etherpty</link>
+        <guid isPermaLink="true">feed.xml/etherpty</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>什么是变量？</title>
+        <description>&lt;p&gt;对于程序员来说，明白什么是变量通常是学习编程的第一课，因为它是编程语言中最基本也是最重要的抽象机制之一。那么，变量是什么？广义上说，变量是对计算机中一个或一系列存储单元的抽象，我们可以从六个维度来刻画一个变量：（名字，地址，值，类型，生存周期，作用域）。而与这个六个维度都与一个重要的概念相关：绑定(binding)。绑定是说将某一个属性（即上面提到的6个维度）关联到变量，对不同属性的绑定、绑定的时候、绑定的位置又会对其它的属性造成不同的影响。所以，我们先从绑定的概念开始，逐步延伸到变量的各个方面。&lt;/p&gt;
+
+&lt;h4 id=&quot;绑定binding&quot;&gt;绑定(Binding)&lt;/h4&gt;
+&lt;p&gt;绑定是一个非常重要的概念，它包括了非常多层次的意义，比如值与变量之间的绑定、类型与变量之间的绑定、操作与操作符之间的绑定等等，因此，绑定可以发生在从语言设计本身，编译，链接，装载，运行等各个阶段。例如下面这条 Java 语句&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;涉及到的绑定如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;count 的类型在编译时进行绑定。&lt;/li&gt;
+  &lt;li&gt;count 的取值定义域在设计编译器是绑定。&lt;/li&gt;
+  &lt;li&gt;操作符 + 的含义编译时，确定了操作数的类型之后进行绑定。&lt;/li&gt;
+  &lt;li&gt;5 如何在计算机内部进行存储、表示在设计编译器时进行绑定。&lt;/li&gt;
+  &lt;li&gt;count 的赋值在运行时执行该语句时进行绑定。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;绑定的一个重要内容是根据其能否在程序执行过程中进行改变而分为&lt;strong&gt;静态绑定&lt;/strong&gt;和&lt;strong&gt;动态绑定&lt;/strong&gt;，而在这其中，对于类型的绑定方式是一门语言最重要的特性之一。&lt;/p&gt;
+
+&lt;p&gt;从绑定的角度上来说，一个变量可以绑定到某种类型之上，从而该变量就有了所绑定类型的定义域以及所对应测操作，而我们又可以将变量名绑定到变量之上，从而使得变量成为可见、可操作的对象。而静态绑定相当于，一旦声明变量之后，变量名-变量-类型 这个『绑定链』就确定而不能改变了。而对与动态绑定来说，一个变量与某个类型的绑定是确定的（否则机器就不知道该怎样为变量分配存储空间了），但变量名和变量的之间的绑定是临时的，可以在程序运行中进行更改，所以从宏观上来看，变量名所对应的类型是动态的。&lt;/p&gt;
+
+&lt;p&gt;举例来说，在 C/C++ 中，我们在声明变量时会显示地指定其类型（比如 int, char …）, 而在此之后，变量的类型在程序的整个运行期间都不会再发生改变，因此我们称之为静态绑定，而具有静态绑定属性的语言，我们称之为静态类型语言。而在诸如 Python, Javascript 等语言中可以在执行过程中随时改变变量的类型，这里就不再累述了。&lt;/p&gt;
+
+&lt;p&gt;动态绑定的优点是非常灵活，而缺点是：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;由于类型可变，所以编译器很难进行类型检查，这可能会导致难以发现的错误。&lt;/li&gt;
+  &lt;li&gt;实现成本较高，一方面是需要在运行时进行类型检查，另外一方面是为了实现类型的动态绑定，必须对每个变量维护一个描述当前类型的数据结构。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;存储空间与生命周期&quot;&gt;存储空间与生命周期&lt;/h4&gt;
+&lt;p&gt;上文谈到了绑定以及类型的绑定，这里谈一谈变量与其对应的存储空间的绑定。通常，根据存储位置的不同，变量可以分为：静态变量、栈变量、堆变量。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;静态变量
+在 C/C++ 中，用 static 关键字修饰的变量称为静态变量，它在程序运行之前就绑定到数据段（Data segment）中的某个存储空间上(由是否初始化来决定绑定到 .data 或 .bss )，直到程序结束。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;栈变量
+一般的在程序运行中定义的局部变量均为栈变量，存储在当前进程空间的栈中，它的生命周期从其被定义开始，直到所在的作用域结束而被自动释放。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;堆变量
+堆变量需要由程序员显式地进行分配（如 C/C++ 中的 malloc 或 new ），变量存储在进程空间的堆当中，只能通过指针变量或引用变量来访问。对于像 C/C++ 这些没有垃圾回收机制的语言来说，需要我们显式的释放堆变量(free/delete)。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;通常来说，对于选择将变量定义在栈上或是堆上可以从以下几个方面来考虑。首先，进程空间中栈空间的大小相对较小，而堆空间则较大，所以对于需要大量空间的变量（比如大数组），我们会选择动态分配空间以便将其保存在堆上。另一方面来说，栈空间的访问速度要快于堆空间，当然这是和系统非常相关的问题，对于栈的变量的访问，通常至于要对栈寄存器(esp)进行操作即可（一般只需要一条机器指令即可），而堆变量则需要进行间接寻址，从而增加了访问时间。当然，我的观点是，栈与堆的区别，最主要的还是在于其中变量生命周期的差异，栈中变量会随着作用域的结束而结束，但是堆中的变量除非显式或隐式的释放，会一直保留在内存中，这种差异在编程中会带来各种意想不到的结果，所以需要特别的注意。比如下面这个例子，&lt;/p&gt;
+
+&lt;div class=&quot;language-c++ highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BUFSIZE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;setbuf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getchar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;EOF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;putchar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;setbuf 的作用是将标准输出 stdout 的数据暂存至缓冲区 buf 中，直至缓冲区满或者显式地调用 fflush 才会将缓冲区中的数据输出到 stdout。上面的小段代码存在一个潜在的问题：当最后一次输入用户输入 EOF 后，循环退出，main 函数返回，其上的栈变量 buf 将会被清除，而此时，如果 buf 缓冲区中还有数据未输出的话那么就丢失了。要解决这个问题，根据我们上文提到的各种类型的变量的生命周期，办法也就显而易见了，一方面可以将 buf 定义为 static 变量，从而在整个程序的运行周期内都可被访问。另一方面，也可以动态地将 buf 的空间分配在堆上，这样在 main 返回时就不会被自动清除了。&lt;/p&gt;
+
+&lt;h4 id=&quot;作用域&quot;&gt;作用域&lt;/h4&gt;
+&lt;p&gt;作用域关系到变量名到底绑定到哪一个变量的问题。&lt;/p&gt;
+
+&lt;p&gt;全局和局部作用域是最常见的两种作用域，在 C/C++ 中，在函数外定义的变量通常是全局作用域的（并且默认是 extern）的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;静态作用域&lt;/strong&gt;是许多常见语言所采用的。所谓静态，就是指可以根据代码文本本身静态地决定变量的作用域，所以通常又称为词法作用域(lexical scope)。静态作用域主要由嵌套块(nest block,比如 C/C++ 中{} 之间的区域)或者嵌套的子函数产生, 一个重要的表现表现形式为内层块的局部变量能够隐藏外层块的同名变量，这个很常见，就不多说了。&lt;/p&gt;
+
+&lt;p&gt;静态作用域带来了另一个概念，称为『闭包』(closure)。闭包在具有函数式编程特性的语言中很常见（如 Scheme/Javascript/Python），我们可以把闭包理解为:一个（子）函数和调用该子函数的外层环境。我们来看一个闭包的例子：&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeAdder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;add10&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;makeadder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果我们调用 makeAdder 函数，那么会得到一个返回值，这个返回值是一个名为 add 的子函数，这个就对应闭包定义中的函数的概念。那么外层环境是指什么呢？ 我们可以看到在 add 中，我们调用了外层函数 makeAdder 的形参 x 作为自己的局部变量，并将自己的形参 y 与之相加作为返回值。对，外层环境就是调用这个子函数的外层函数所拥有的变量。&lt;/p&gt;
+
+&lt;p&gt;从上面闭包的例子可以看出，一个语言要支持闭包，首先要支持嵌套子函数，其次子函数要有保持外层环境的能力。后者意味着，外层函数的变量必须要分配在堆空间中，从而使得外层函数返回后其中的变量仍然能够保留在内存中以便内层子函数调用从而构成闭包。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;动态作用域&lt;/strong&gt;在实际的编程语言中不是特别常见，下面来看个例子，&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sub1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sub2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;pirnt&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;假设以上代码所用语言支持动态作用域，那么若在 foo 中调用 sub2，则 sub2 中的变量 x 指向的是外层环境 foo 中的变量 x，因此输出 5；而若在 sub1 中调用 sub2， 则 sub2 中的 x 对应为 sub1 中的 x，因此输出 7。可见，动态作用域要在运行时才能确定。而如果上述代码为静态作用域的话，无论在哪儿调用 sub2，都将输出5.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 01 Oct 2013 03:18:00 -0700</pubDate>
+        <link>feed.xml/what-is-the-variable</link>
+        <guid isPermaLink="true">feed.xml/what-is-the-variable</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>开源项目- Mat2Py</title>
+        <description>&lt;p&gt;Mat2py 这个小项目源于我自身的需求 - 将一些 Matlab 代码转换为能够不经修改就能运行的 Python 代码。所以 Mat2py 就是这样一个能够完成代码转换的编译器，目前能够完成基本的代码转换，并提供了一定的扩展性。&lt;/p&gt;
+
+&lt;p&gt;作为暑假期间完成的业余小项目，前后开发大概用了20个晚上的时间。总的来说，开发难度不大，从词法分析到语法分析，到代码生成，用时间最多的是在语法分析部分(Parser),在语法分析的时候，由于没有 Matlab 语言的语法说明，所以只有自己根据经验设计语法规则，导致在写 Parser 的时候用到了大量的 ad-hoc 的办法，使得整个 parser 的代码逻辑变得较为混乱,这一方面大大增加了维护的难度和成本，另一方面，也削弱了开源的意义，因为生成的 AST 估计只有我才能够理解，所以其它开发者是很难参与到代码的贡献中来的（摊手）。另外，由于在 Python 中，矩阵并不是元类型，所有对矩阵的操作均是通过调用外部的库函数得以实现，最先开始我想做类型推导，以区分矩阵类型和普通类型，从而对不同类型采用不同的运算方式（比如矩阵乘和代数乘是不同的），但是仔细想想才发现目前这种基于静态分析而缺少运行时信息的状态基本上是没法做到这一点的，因此作罢，最后采用了一些办法进行简单的判断，这可能会导致一些潜在的问题。&lt;/p&gt;
+
+&lt;p&gt;此外，我之前一直用 Vim 来编写 Python 代码，用着还算顺手，但是在调试代码的时候，我深刻的体会到了先进的 IDE 的价值。调试 Python 代码最简单的可以直接在代码运行时输出 log，然后进行分析。稍微进化一点可以使用 pdb(类似于 gdb)加入断点或者单步运行等等 Debug 功能，但是一旦函数调用层次较多，程序的逻辑较为复杂的时候，这种命令行下的调试工具便显得力不从心了。之前我在微博上说，先进的IDE （例如 VS/Xcode ）只是缺乏一个优秀的文本编辑器，而其他方面则完胜纯文本编辑器(Vim/Emacs)。具体来说，优秀的文本编辑器的优势在于，你可以用大量快捷键或者命令的组合来完成对文本的批量处理和编辑，这样无论是输入还是编辑，都可以用键盘来完成，这大大的提高了文本处理的效率。同时，优秀的文本编辑器是高度可定制化的，你可以根据自己的喜好来配置编辑器几乎所有的功能。这些都是优秀文本编辑器的优势之所在。但是作为 IDE 来讲，最为显著的优势就是它能够『理解』代码。为什么这样说呢？因为 IDE 通常是编辑器与编译器的综合体，由于自身就有编译代码的能力，所以在编辑代码的时候，IDE 能够从语意层面理解你所输入的每一行代码，它能根据上下文来完成自动补全、智能提示、代码高亮等等复杂的工作；而文本编辑器表面上也可以完成上述工作，但是它是基于文本而非语意的，也就是说，它只能通过正则表达式对文本进行匹配来勉强完成工作，由此可以看出，这是高度完全不同的两个层次，IDE 所做的工作大大降低了编写代码和排除 bug 的难度。另外，可视化的调试工具、对整个项目的管理等优势，就不再多说了。总而言之，用正确的工具去做正确的事，才是最明智的选择。&lt;/p&gt;
+
+&lt;p&gt;另一方面，回过头来思考这种高级语言到高级语言的转换，其意义是值得商榷的。因为高级语言的精髓在于其语意本身，而语意又决定了代码风格，充分利用语言所提供的语意特性，才能够写出优雅而高效的代码。比如 Matlab 语言本身是完全基于矩阵的，所以尽可能的用矩阵运算代替循环操作就能够使得代码更加简洁，运行的效率也会有非常大的提升。而 Python 有自身的语言特性，比如迭代器和生成器，正确的使用这些特性，才能尽可能的发挥所用语言的优势。所以，不同语言的特性及风格存在着巨大的区别，机械地进行代码转换，只能保证的是逻辑上的对应关系，但却大大丧失了目标语言本身的优势。&lt;/p&gt;
+
+&lt;p&gt;回到 Mat2py 这个项目来说，现在已经完成了基本逻辑的转换（选择、循环、函数调用、矩阵生成等等），以及一些常用库函数，由于库函数已经插件化，所以对于库函数的后期扩展变得相对容易。此外，下一步我可能会搭一个 Live Demo，使得用户可以在浏览器中直接得到代码转换的结果，从而简化了使用的难度。&lt;/p&gt;
+
+&lt;p&gt;项目的详细介绍和源代码都在：&lt;a href=&quot;https://github.com/miaoever/Mat2py&quot;&gt;https://github.com/miaoever/Mat2py&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 09 Sep 2013 03:18:00 -0700</pubDate>
+        <link>feed.xml/mat2py</link>
+        <guid isPermaLink="true">feed.xml/mat2py</guid>
+        
+        
+      </item>
     
       <item>
         <title>λ-演算与编码</title>
@@ -104,6 +326,30 @@
         <pubDate>Fri, 26 Jul 2013 03:18:00 -0700</pubDate>
         <link>feed.xml/intro-to-lambda-calculus</link>
         <guid isPermaLink="true">feed.xml/intro-to-lambda-calculus</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>荐书：政治的历史与边界</title>
+        <description>&lt;p&gt;牛津通识读本是牛津大学出版社邀请各个领域著名的学者，用大概100页左右的篇幅来介绍自己所研究领域的内容，以达到科普和启蒙的目的，内容涉及到了政治学、心理学、设计、金融等等。而本文所推荐的这本书是牛津通识读本中关于政治学的分册。作者通过简明的言语描绘了政治学的起源、现状以及与我们每一个人的联系。&lt;/p&gt;
+
+&lt;p&gt;作者一来就旗帜鲜明的指出：『政治中没有专制者的位置』，也就是说：政治（这里粗略可以指自由与民主政治）与专制是两个相互对立的概念。&lt;/p&gt;
+
+&lt;p&gt;在作者的笔下的专制，是秩序靠武力来建立，以恐怖来维系，朝令夕改反复无常的一种体制，在其中，有关秩序的最高准则取决于君主个人的好恶，所以一方面民众期待明君，企图依靠君主的智慧来主持正义，如历史上大卫、所罗门这样的伟大君王，另一方面根人们将深蒂固的社会习俗作为普遍认可的正义观念，进而成为专制社会中自然法则的一部分。&lt;/p&gt;
+
+&lt;p&gt;作为古希腊文化的继承者，反对专制一度是欧洲政治传统的重要组成部分。古希腊人犹如武士，他们一方面欣赏波斯、远东文明绚丽的文化，另一方面却又鄙夷东方臣民与君主间诸如『匍匐下跪』这样如同奴隶与主人似的关系，特别是在基督教中，『匍匐下跪』是用来描述人与神之间的距离的一种意象。而两千多年后，欧洲人完全继承了古希腊人对专制习惯性的反感。所以在欧洲，追求专制权力的人通常必须把自己伪装起来。但是，欧洲人有时也会被某种以诱人的理想主义面目出现的专制体制所蒙蔽-希特勒就使用了这种手法。这提醒我们，即便是在对专制有着如此抵抗力的欧洲，专制主义在时间和空间上离我们并不遥远。&lt;/p&gt;
+
+&lt;p&gt;专制体制长期统治的结果，便是在一个国度里专制强权的反复无常会引发一种回应，富有思想的臣民转向神秘主义或者其他消极隐退的信仰。他们在超越感官的精神世界里找到了生活的真谛，而社会和政治生活则被贬低为一种幻象。这种趋势的后果，即使有极为短暂的繁荣，但大多数时期是科学技术发展的长期滞后，例如中国的明清时代。&lt;/p&gt;
+
+&lt;p&gt;『在私人生活中我们自由而宽容；但在公共事务中我们严守法规』，在谈论到如何区别政治与专制，一个很重要的线索就是是否保持私人生活与公众领域之间的界限。私人领域指的是家庭生活以及个人良知的领域-一个人良知即个人凭自己的意愿选择信仰和兴趣。在民主自由政治体制中，公共权力受到国会、反对党、媒体等等的制约与制衡，从而保证权力不会随意地侵犯到个人的私人生活；而在公共事务中，政府会以严格的法律来维持社会的秩序。由此衍生来看，诸如『个人的一切都属于政治』这样伪装成普世真理的口号都是值得警惕，在潜意识中，这样的用词会模糊我们对公共和个体的判断标准。&lt;/p&gt;
+
+&lt;p&gt;作者在开篇的结尾部分中说，『许多学术和艺术作品都是政治的镜子，只有把那些意象整合起来，形成一个完整的认识体系，我们才能把握它们的真谛』，这或许从一个方面道出了政治学之于你我的意义与价值。&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 14 Jul 2013 03:18:00 -0700</pubDate>
+        <link>feed.xml/intro-politics</link>
+        <guid isPermaLink="true">feed.xml/intro-politics</guid>
         
         
       </item>

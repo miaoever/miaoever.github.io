@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>随笔杂记 - 借我瞻前与顾后，借我执拗如少年</title>
+    <meta name="description" content="rumbling thoughts" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css " />
+
+</head>
+<body class="home-template">
+
+    <header class="main-header post-head no-cover">
+    <nav class="main-nav  clearfix">
+        <a class="back-button icon-arrow-left" href="/">Home</a>
+        <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">什么是变量？</h1>
+            <section class="post-meta">
+                
+                <time class="post-date" datetime="2013-10-01">01 Oct 2013</time>
+            </section>
+        </header>
+
+<!--         <header class="post-header">
+            <a id="blog-logo" href="feed.xml">
+                
+                    <span class="blog-title">随笔杂记</span>
+                
+            </a>
+        </header> -->
+
+        <!-- <span class="post-meta">
+            <time datetime="2013-10-01">01 Oct 2013</time>
+            
+        </span> -->
+
+        <!-- <h1 class="post-title">什么是变量？</h1> -->
+
+        <section class="post-content">
+            <p>对于程序员来说，明白什么是变量通常是学习编程的第一课，因为它是编程语言中最基本也是最重要的抽象机制之一。那么，变量是什么？广义上说，变量是对计算机中一个或一系列存储单元的抽象，我们可以从六个维度来刻画一个变量：（名字，地址，值，类型，生存周期，作用域）。而与这个六个维度都与一个重要的概念相关：绑定(binding)。绑定是说将某一个属性（即上面提到的6个维度）关联到变量，对不同属性的绑定、绑定的时候、绑定的位置又会对其它的属性造成不同的影响。所以，我们先从绑定的概念开始，逐步延伸到变量的各个方面。</p>
+
+<h4 id="绑定binding">绑定(Binding)</h4>
+<p>绑定是一个非常重要的概念，它包括了非常多层次的意义，比如值与变量之间的绑定、类型与变量之间的绑定、操作与操作符之间的绑定等等，因此，绑定可以发生在从语言设计本身，编译，链接，装载，运行等各个阶段。例如下面这条 Java 语句</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>涉及到的绑定如下：</p>
+
+<ul>
+  <li>count 的类型在编译时进行绑定。</li>
+  <li>count 的取值定义域在设计编译器是绑定。</li>
+  <li>操作符 + 的含义编译时，确定了操作数的类型之后进行绑定。</li>
+  <li>5 如何在计算机内部进行存储、表示在设计编译器时进行绑定。</li>
+  <li>count 的赋值在运行时执行该语句时进行绑定。</li>
+</ul>
+
+<p>绑定的一个重要内容是根据其能否在程序执行过程中进行改变而分为<strong>静态绑定</strong>和<strong>动态绑定</strong>，而在这其中，对于类型的绑定方式是一门语言最重要的特性之一。</p>
+
+<p>从绑定的角度上来说，一个变量可以绑定到某种类型之上，从而该变量就有了所绑定类型的定义域以及所对应测操作，而我们又可以将变量名绑定到变量之上，从而使得变量成为可见、可操作的对象。而静态绑定相当于，一旦声明变量之后，变量名-变量-类型 这个『绑定链』就确定而不能改变了。而对与动态绑定来说，一个变量与某个类型的绑定是确定的（否则机器就不知道该怎样为变量分配存储空间了），但变量名和变量的之间的绑定是临时的，可以在程序运行中进行更改，所以从宏观上来看，变量名所对应的类型是动态的。</p>
+
+<p>举例来说，在 C/C++ 中，我们在声明变量时会显示地指定其类型（比如 int, char …）, 而在此之后，变量的类型在程序的整个运行期间都不会再发生改变，因此我们称之为静态绑定，而具有静态绑定属性的语言，我们称之为静态类型语言。而在诸如 Python, Javascript 等语言中可以在执行过程中随时改变变量的类型，这里就不再累述了。</p>
+
+<p>动态绑定的优点是非常灵活，而缺点是：</p>
+
+<ul>
+  <li>由于类型可变，所以编译器很难进行类型检查，这可能会导致难以发现的错误。</li>
+  <li>实现成本较高，一方面是需要在运行时进行类型检查，另外一方面是为了实现类型的动态绑定，必须对每个变量维护一个描述当前类型的数据结构。</li>
+</ul>
+
+<h4 id="存储空间与生命周期">存储空间与生命周期</h4>
+<p>上文谈到了绑定以及类型的绑定，这里谈一谈变量与其对应的存储空间的绑定。通常，根据存储位置的不同，变量可以分为：静态变量、栈变量、堆变量。</p>
+
+<ul>
+  <li>
+    <p>静态变量
+在 C/C++ 中，用 static 关键字修饰的变量称为静态变量，它在程序运行之前就绑定到数据段（Data segment）中的某个存储空间上(由是否初始化来决定绑定到 .data 或 .bss )，直到程序结束。</p>
+  </li>
+  <li>
+    <p>栈变量
+一般的在程序运行中定义的局部变量均为栈变量，存储在当前进程空间的栈中，它的生命周期从其被定义开始，直到所在的作用域结束而被自动释放。</p>
+  </li>
+  <li>
+    <p>堆变量
+堆变量需要由程序员显式地进行分配（如 C/C++ 中的 malloc 或 new ），变量存储在进程空间的堆当中，只能通过指针变量或引用变量来访问。对于像 C/C++ 这些没有垃圾回收机制的语言来说，需要我们显式的释放堆变量(free/delete)。</p>
+  </li>
+</ul>
+
+<p>通常来说，对于选择将变量定义在栈上或是堆上可以从以下几个方面来考虑。首先，进程空间中栈空间的大小相对较小，而堆空间则较大，所以对于需要大量空间的变量（比如大数组），我们会选择动态分配空间以便将其保存在堆上。另一方面来说，栈空间的访问速度要快于堆空间，当然这是和系统非常相关的问题，对于栈的变量的访问，通常至于要对栈寄存器(esp)进行操作即可（一般只需要一条机器指令即可），而堆变量则需要进行间接寻址，从而增加了访问时间。当然，我的观点是，栈与堆的区别，最主要的还是在于其中变量生命周期的差异，栈中变量会随着作用域的结束而结束，但是堆中的变量除非显式或隐式的释放，会一直保留在内存中，这种差异在编程中会带来各种意想不到的结果，所以需要特别的注意。比如下面这个例子，</p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">BUFSIZE</span><span class="p">];</span>
+    <span class="n">setbuf</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">buf</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">)</span>
+        <span class="n">putchar</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>setbuf 的作用是将标准输出 stdout 的数据暂存至缓冲区 buf 中，直至缓冲区满或者显式地调用 fflush 才会将缓冲区中的数据输出到 stdout。上面的小段代码存在一个潜在的问题：当最后一次输入用户输入 EOF 后，循环退出，main 函数返回，其上的栈变量 buf 将会被清除，而此时，如果 buf 缓冲区中还有数据未输出的话那么就丢失了。要解决这个问题，根据我们上文提到的各种类型的变量的生命周期，办法也就显而易见了，一方面可以将 buf 定义为 static 变量，从而在整个程序的运行周期内都可被访问。另一方面，也可以动态地将 buf 的空间分配在堆上，这样在 main 返回时就不会被自动清除了。</p>
+
+<h4 id="作用域">作用域</h4>
+<p>作用域关系到变量名到底绑定到哪一个变量的问题。</p>
+
+<p>全局和局部作用域是最常见的两种作用域，在 C/C++ 中，在函数外定义的变量通常是全局作用域的（并且默认是 extern）的。</p>
+
+<p><strong>静态作用域</strong>是许多常见语言所采用的。所谓静态，就是指可以根据代码文本本身静态地决定变量的作用域，所以通常又称为词法作用域(lexical scope)。静态作用域主要由嵌套块(nest block,比如 C/C++ 中{} 之间的区域)或者嵌套的子函数产生, 一个重要的表现表现形式为内层块的局部变量能够隐藏外层块的同名变量，这个很常见，就不多说了。</p>
+
+<p>静态作用域带来了另一个概念，称为『闭包』(closure)。闭包在具有函数式编程特性的语言中很常见（如 Scheme/Javascript/Python），我们可以把闭包理解为:一个（子）函数和调用该子函数的外层环境。我们来看一个闭包的例子：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">makeAdder</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+    <span class="k">return</span> <span class="n">add</span>
+
+<span class="n">add10</span> <span class="o">=</span> <span class="n">makeadder</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="k">print</span> <span class="n">add10</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#11
+</span></code></pre></div></div>
+
+<p>如果我们调用 makeAdder 函数，那么会得到一个返回值，这个返回值是一个名为 add 的子函数，这个就对应闭包定义中的函数的概念。那么外层环境是指什么呢？ 我们可以看到在 add 中，我们调用了外层函数 makeAdder 的形参 x 作为自己的局部变量，并将自己的形参 y 与之相加作为返回值。对，外层环境就是调用这个子函数的外层函数所拥有的变量。</p>
+
+<p>从上面闭包的例子可以看出，一个语言要支持闭包，首先要支持嵌套子函数，其次子函数要有保持外层环境的能力。后者意味着，外层函数的变量必须要分配在堆空间中，从而使得外层函数返回后其中的变量仍然能够保留在内存中以便内层子函数调用从而构成闭包。</p>
+
+<p><strong>动态作用域</strong>在实际的编程语言中不是特别常见，下面来看个例子，</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="k">def</span> <span class="nf">sub1</span><span class="p">():</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+
+    <span class="k">def</span> <span class="nf">sub2</span><span class="p">():</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">pirnt</span> <span class="n">y</span>
+</code></pre></div></div>
+<p>假设以上代码所用语言支持动态作用域，那么若在 foo 中调用 sub2，则 sub2 中的变量 x 指向的是外层环境 foo 中的变量 x，因此输出 5；而若在 sub1 中调用 sub2， 则 sub2 中的 x 对应为 sub1 中的 x，因此输出 7。可见，动态作用域要在运行时才能确定。而如果上述代码为静态作用域的话，无论在哪儿调用 sub2，都将输出5.</p>
+
+        </section>
+
+        
+
+        <footer class="post-footer">
+            <!-- If we want to display author's name and bio -->
+            
+                <figure class="author-image">
+                    <a class="img" href="/" style="background-image: url(/assets/images/profile.png)">
+                    <span class="hidden">mjdeng's Picture</span></a>
+                </figure>
+                <section class="author">
+                    <!-- Author Name -->
+                    <h4> mjdeng </h4>
+                    <!-- Author Bio -->
+                    <p>
+                        天蝎. Engineer@Facebook
+                    </p>
+                </section>
+            
+
+            <!-- Share links section -->
+            <section class="share">
+    <h4>Share this post</h4>
+    <a class="icon-twitter" href="http://twitter.com/share?text=什么是变量？&amp;url=https://miaoever.github.io/what-is-the-variable"
+        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+        <span class="hidden">Twitter</span>
+    </a>
+    <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://miaoever.github.io/what-is-the-variable"
+        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+        <span class="hidden">Facebook</span>
+    </a>
+    <a class="icon-google-plus" href="https://plus.google.com/share?url=https://miaoever.github.io/what-is-the-variable"
+       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+        <span class="hidden">Google+</span>
+    </a>
+</section>
+
+            <!-- Disqus comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+    <footer class="site-footer clearfix">
+      <section class="copyright">
+        <a href="">随笔杂记</a> &copy; 
+              2021 &bull; All rights reserved.
+      </section>
+      <section class="poweredby">Made with Jekyll using 
+        <a href="http://github.com/rosario/kasper">Kasper theme</a>
+      </section>
+    </footer>
+    
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>

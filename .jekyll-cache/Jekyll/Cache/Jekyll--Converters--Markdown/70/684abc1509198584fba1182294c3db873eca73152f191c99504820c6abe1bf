@@ -1,0 +1,49 @@
+I"-<p>Etherpty 这个项目其实4月份和 Hayeah 讨论过后就实现了最初的原型版本，只是当时代码比较混乱，后来忙着实习等等琐事，导致整个项目被闲置了下来。最近，正好有点时间，所以对所有代码进行了重构，以提高可维护性和可扩展性。</p>
+
+<p>简单的来说，etherpty 是一个通过 url 非常便捷的直播、分享你的 pty 的工具。作为分享者，你只需要运行 etherpty share 命令便能获取一个带有 token 的 url，将这个 url 分享给任何想观看你直播的听众，听众在任何现代的浏览器上访问该 url 就能实时地看到你 pty 直播的内容。</p>
+
+<p>此外，如果你想请求远程的协作者来操作、控制你的 pty，只需要通过 etherpty share –editable以编辑模式来分享你的 pty，并将得到的 url 发送给远程协作者，他就可以通过浏览器上的模拟终端操作你本地的 pty 了。</p>
+
+<p>项目分为两个部分</p>
+
+<ul>
+  <li><a href="https://github.com/miaoever/etherpty-cli">Client</a></li>
+  <li><a href="https://github.com/miaoever/etherpty-clietherpty-server">Server</a></li>
+</ul>
+
+<p>下面就是官方的介绍了 :)</p>
+
+<h4 id="installation">Installation</h4>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm <span class="nb">install </span>etherpty-cli <span class="nt">-g</span>  
+</code></pre></div></div>
+<h4 id="usage">Usage</h4>
+<p>To broadcast(share) your pty,</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$etherpty</span> share
+</code></pre></div></div>
+<p>If connected, you may get the information like</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Your shell is shared at: http://etherpty.io/b0f3003a47574a9dada220208e389a92  
+</code></pre></div></div>
+
+<p>Now, you can spread the unique url to anyone you want to share. The listeners just need to paste the url into their browser and everything from your pty will broadcast to them now.</p>
+
+<h4 id="editable-mode">Editable mode</h4>
+<p>In some situation, you may allow the listener to control your pty(i.e. your pty is editable), just share your pty in the editable way</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$etherpty</span> share <span class="nt">--editable</span>
+</code></pre></div></div>
+
+<p>Notice: your shared pty is uneditable to the listeners in default.</p>
+
+<h4 id="configuration">Configuration</h4>
+<p>You can config your own etherpty server (instead of etherpty.io) in config/config.json, or specific by the command line argv like</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$etherpty</span> share http://yourserverip:port
+</code></pre></div></div>
+
+<h4 id="contributors">Contributors</h4>
+<p>Thanks <a href="https://github.com/hayeah">Hayeah</a> for the idea and the protocol design.</p>
+
+<p>License
+MIT</p>
+
+:ET
